@@ -1,0 +1,287 @@
+Evolutions 2.6.0
+-----------------
+
+
+Evolutions 2.5.0
+-----------------
+Correction de Login.php. 
+- Elle initialise correctement la session['droits'].
+Les admin ne peuvent plus modifier un admin de même niveau ou plus haut mais uniquement ceux ayant le moins de droits.
+En terme de dev = l'inverse, les admin ayant un niveau 3 ne peuvent modifier que les nv 4 et plus.
+- fonction "deco" supprime correctement les cookies
+correction du if(file_exist($path)) en if(file_exist($fic))
+
+
+Modif view / admin / articles / body
+Classement de la lisbox en alpha
+
+Modif view / page / body.php
+Ajout de la gestion de l'image principale.
+Si elle y est alors col-3 + col 7
+Sinon col 12
+
+Modif model / Categorie_model.php
+Modif model / Article_model.php
+Modif model / Galerie_model.php
+Modif model / Galerie_prod_model.php
+Modif model / Produit_model.php
+- gestion des update amélioré, prend en compte les lignes de langue inexistantes et les ajoute si besoin.
+Le cas d'un site créé en FR et qui passe en FR+EN, les articles créés n'ont pas de trad en EN. Maintenant, l'update ne plante plus et ajoute 
+l'enreg EN puis le met à jour.
+
+Modif BDD
+table "tradprods", champ "desctech" NULL = OUI
+
+Ajout fonction make_orphans dans Categorie_model.php
+Gestion des orphelins dans admin\menu.php lors de la suppression d'une cat
+
+Gestion de la corbeille = gestion des articles orphelins
+Un article est orphelin lorsque son idcat = 0.
+La table articles_categories doit avoir un enregistrement idart et idcat=0
+
+BO, gestion de abr_lang dans l'url de "voir le site" en haut du menu (view \ admin \ menu.php)
+
+Evolutions 2.4.0
+-----------------
+Correction d'un bug de login.
+config / config.php : décommenter impérativement les lignes 435 à 439 relatives aux cookies
+
+Modification de la gestion des sessions (cookies). Attention, procédure sur base de connaissance pour mise à jour
+des versions 2.x
+Ont été modifiés :
+- kcfinder/conf/config.php
+- Login.php, fonction "deco"
+- config/config.php ligne $config['sess_save_path'] = FCPATH.'cktmp658f62/';
+Et ajout d'un répertoire 'cktmp658f62' à la racine du site pour héberger les cookies
+
+Ajout d'un répertoire : zzz-models-HTML dans lequel on trouvera le model "good wine" de wine-secret et mas-lou.
+D'autres models pourront y être ajouté
+
+Mise en place d'un thème, "Wine", par defaut, neutre, avec catégories, sous catégories et articles en Lorem Ipsum.
+Image neutre et logo neutre
+Idéal pour base à la maslou
+
+Mise en place du thème "Soleil", basé sur le site de Soleiado.
+Modules : page, portfolio base sur catégories, contact
+Design : unify
+
+Mise en place du thème "Blanc", basé sur le site d'unavia.
+Modules : page, portfolio base sur catégories, contact
+Design : unify
+
+Upgrade Categorie_model et Articles_model
+
+
+Evolutions 2.3.3
+-----------------
+Version corrompue, utiliser la 2.4.0
+
+Ajout d'un thème par défaut.
+Ajout de catégories par défaut.
+Ajout d'articles et d'images par defaut.
+
+Modification des contrôleurs correspondants aux catégories par défaut.
+
+Ajout d'une route.
+
+Modification Artcile_model.php
+- trim() sur la string add_art
+- trim() sur la string upd_art
+- strip_tags() sur "nom_clean" et "titre_clean"
+
+Amélioration de la gestion du menu du BO : admin/left_panel
+- Ajout de $seg_art et $seg_menu
+- Modification du switch
+La gestion de ne fait plus sur le nombre de caractères présents dans l'url mais sur le 5 ou 6ème segment
+
+Modification Categorie_model.php
+- ajout d'intval sur l'$idcat de get_cat_data
+
+Modification CROP :
+L'image croppée n'est plus conservée, elle est redimensionnée en fonction des constantes WIDTH (config/my_constants.php) 
+remplace le "_thumb".
+Donc le "thumb" n'est créé que si une découpe est faite !
+
+Modification article_helper.php
+- suppression de la fonction rename_to_crop() au profit du "thumb".
+Le "-crop.png" n'existe plus.
+
+Modification Article_helper.php
+Suppression des class dans le code des iframe des videos.
+
+
+Evolutions 2.3.2
+-----------------
+Ajout dans le fichier config / my_constants_id_cat_nn.php
+- URL_DEV (local)
+- URL_PRE_PROD (pré-prod)
+
+Modification fichier view / admin / header.php
+- Ajout de la boucle permettant de retrouver le bon domaine. Permet de cliquer sur "voir le site". 
+
+
+Evolutions 2.3.1
+-----------------
+Optimisation de la gestion constante "ENVIRONNEMENT"
+Correction de la valeur "production" qui ne fonctionnait pas.
+En effet, il y avait un répertoire "config/production" avec un fichier config.php dans app/config
+du coup le système le prenait en compte et il initilisait "base_url" avec "http://localhost/codeigniter"
+
+Ajout d'une nouvelle valeur "ENVIRONNEMENT" dans index.php :
+- "closed" : permet de fermer un site
+- ajout de "case 'closed':" dans le "switch(ENVIRONNEMENT)"
+
+Modification de app / core / My_Controller.php
+- My_Controller function__construct : ajout de la redirection sur "closed" si ENVIRONNEMENT = "closed"
+
+Modification function_helper.php => get_cat_id($seg)
+- ajout de la gestion multisites : idsite dans clause WHERE
+
+Modification "my_constant.php" :
+- ajout d'un commentaire explicatif en debut de page
+- ajout de constantes URLs pour les upload (cat, articles, autopromo etc.)
+
+
+
+Evolutions 2.3.0
+-----------------
+Gestion des logos des sites pour le multi-sites
+---
+Modification :
+- config / my_constant.php
+- controllers / popupdsite.php
+- models / Site_model.php
+- admin / popup / popupdsite.php
+- languages / info_bo_lang.php
+Modification DBB :
+- ajout des champs "logo" et "logo_mini" en VARCHAR 50 dans la table "sites"
+- ajout des champs "denomination" (100), "adresse" (200), "adresse2" (200), "cp" (5), 
+"ville" (80), "tel" (15), "fax" (15), "autres_infos" (255) dans la table "sites"
+- table "membres", champ "cp" en char(5) au lieu de int
+
+Modification :
+- view / admin / popup / popupdsite.php
+- models / Site_model.php
+- language / info_bo_lang.php
+- view / admin / header.php
+
+Chargement du helper "site_helper.php" par défaut (My_Public_Controller)
+
+
+
+
+
+Evolutions 2.2.1
+-----------------
+Modification du comportement du popin d'ajout d'un membre
+- le popin est actif lorsque CI retourne une erreur (email en double par exemple):
+controllers/admin/Membres.php 
+view/admin/membres/body.php
+view/admin/membres/modal_add_membre.php
+
+Modification : session("nvAccredit") devient session("droits")
+
+Mise à jour SmartAdmin (1.8.2) :
+- upload les fichiers de la nouvelles version dans le répertoire template/admin
+- modification de view/admin/head.php et view/admin/footer.php
+
+
+
+
+
+Evolutions 2.2.0
+-----------------
+Ajout controllers
+- Cart.php 
+- Catalogue.php
+
+Ajout des vues :
+- cart (body.php)
+- produit (body.php + liste.php)
+
+Modification BDD
+- ajout champ ref (varchar 50) ds table produits
+
+Modification Produit_models
+- ajout idsite dans get_produits
+- ajout idsite dans get_pdf_produits
+- ajout idsite dans get_produit_by_nom
+- ajout de strtolower dans add_prod et upd_prod
+- ajout "stock" et "ref" upd_prod
+- ajout "REF-TMP" upd_prod
+
+Modification Categorie_models
+- ajout idsite dans get_cat_data_by_nom
+
+Modification view/admin/popup/popupdpro.php
+- ajout ligne "STOCK" avec stock et ref
+
+Modification view/admin/produits/body.php
+- ajout colone "ref" et "stock" dans le listing
+
+Modification config/form_validation.php
+- ajout des contrôles sur stock et ref
+
+Modification admin/menu/modal_add_link.php
+- initialisation des variables $titleadd et $nomadd à ""
+
+Il n'est maintenant plus possible à un admin de supprimer 
+la gestion d'un site à un autre admin de même niveau.
+Modification view/admin/popup/popupduser.php
+- ajout des alertes
+Modification models/Site_model.php, del_user_site
+
+Update language/french/info_bo_lang.php
+
+
+Evolutions 2.1.0
+-----------------
+Ajout du champ "idsite" dans les tables :
+- tradarts
+- tradcats
+- tradgals
+- tradprods
+- commandes
+
+Modification et ajout de l'id du site dans les fichiers :
+- art_titre_not_doublon    => libraries\My_Form_validation.php
+- cat_nom_not_doublon      => libraries\My_Form_validation.php
+- insert_art_trad          => models\Article_model.php
+- upd_art                  => models\Article_model.php
+- add_img_galerie          => models\Galerie_model.php
+- insert_trad_gal          => models\Galerie_model.php
+
+Ajout d'une règle de validation
+- check_form_add_link      => controllers\admin\Menu.php
+
+Ajout de l'alerte en cas de doublon
+- view/admin/menu/body.php
+
+Modification des modeles, ajout de l'id du site
+- insert_art_trad          => models\Article_model.php
+- upd_art                  => models\Article_model.php
+- insert_cat_trad          => models\Categorie_model.php
+- upd_art                  => models\Categorie_model.php
+- insert_art_trad          => models\Produit_model.php
+- upd_prod                 => models\Produit_model.php
+
+Update language/french/info_bo_lang.php
+
+Ajout champ "stock" table "produits"
+Modification champ "domaine" table "sites" : varchar 255
+
+Modification de My_Controller.php et Login.php
+- Un id site peut avoir plusieurs URL (255 chars maxi)
+  Par exemple, cms-site.com, siteclient.com et site-preprod.com
+  Chacune de ces URLs affichera les infos du site ID 10 par exemple
+- Garde le nom du site actuel, s'il est changé dans dans Siteswitch.php, le nouveau nom est donc conservé
+
+config/form_validation:
+- addusr = le prénom n'est plus obligatoire
+- updusr = idem + code postal peut être vide
+
+BO - Gestion multi-sites :
+- L'onglet affiche bien le nom du site sélectionné
+- Le raccourcis permettant de voir le site (en haut à droite) pointe :
+    soit sur mon site local pour le dev
+    soit sur le premier nom de domaine qui n'est pas mon site (cms-site.com) si en préprod ou prod

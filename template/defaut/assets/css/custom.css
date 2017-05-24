@@ -1,0 +1,191 @@
+/* Add here all your css styles (customizations) */
+/* 
+orange 1 #F16B37
+orange 2 #8E3E20
+
+bleu 1 unify #04A9D2
+bleu 2 unify #23527C
+*/
+
+div>h1{margin:70px 0;}
+h1{font-size: 3.4em;color:#000;}
+h2{color:#000;font-size: 2.5em;}
+.img-450{
+	width:450px;
+	height:auto;
+}
+h3{color:white;text-transform: uppercase;font-size: 1.8em;}
+.bw{border: 1px solid white;}
+.bb{border: 1px solid black;}
+.br{border: 1px solid red;}
+.bg{border: 1px solid green;}
+.none{display: none;}
+.white{color:#fff;}
+.black-background{background: #000;}
+.centered{text-align: center;}
+.separateur{min-height: 50px;}
+
+/* trame haut de page */
+.bg-trame{background-color: #000;height:50px;line-height:50px;}
+.titre-w{color:white;font-size:1.2em;border-width:0px;}
+.social{margin-top:-4px;width:40px;border:0;}
+
+/* ACCUEIL */
+.margin-top-50{margin-top: 50px;}
+.col-xs-15{width:20%;}
+.bg-img{background-image:url(../img/bg/fond-competences.png)}
+.bg-img-jaune{background-image:url(../img/bg/fond-compteur.png)}
+.h2-competences{text-transform: uppercase;font-size:1.2em;color:#000;padding-top:10px;}
+/*.h2-news-accueil{color:grey;}*/
+.news-accueil{margin-left: auto;margin-right: auto;margin-top:13%;}
+.embed-responsive.embed-responsive-16by9 {
+ 	padding-bottom:none;
+ 	margin-top: 12%;
+ }
+ .hr-cliens{
+ 	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 2px;
+	border: 0;
+	color: grey;
+	background-color: #C4C4C4;
+ }
+ .parallax-counter-v4:after{background: none;}
+ .counter{font-size: 3em!important;}
+ .icon-cup{font-size: 4em!important;}
+ .icon-bulb{font-size: 4em!important;}
+ .icon-emoticon-smile{font-size: 4em!important;}
+ .hauteur-303{height:303px;}
+/* MENU HAUT */
+.header .dropdown > a:after{color:#F7B101;font-size: 1.5em;margin-right: -7px;}
+.header .dropdown-menu li a{font-size: 1.2em;}
+.header .navbar-nav > li > a {
+	color: #687074;
+	font-size: 1.2em;
+	font-weight:400;
+	text-transform: uppercase;
+}
+.mega-menu{
+	margin-top:8px;
+}
+
+/* PAGE */
+.h1-page{margin-top: -50px;}
+.h2-page{font-size: 2.6em!important;color:#000!important;font-weight: 400!important;}
+
+/* NEWS */
+.hr-news{
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 2px;
+	border: 0;
+	color: grey;
+	background-color: #C4C4C4;
+}
+
+.icontop{height:50px;width:auto;margin-left: -15px;}
+.fontw{color:#fff;font-size:1.3em;}
+.menu-centered{margin-right:0;margin-left: 0;}
+.dropdown-menu{text-align:left;}
+
+.logo-menu{position: absolute;margin-top:-30px;z-index: 1000}
+.fixe-hauteur{height:60px;}
+.sous-logo{display:none;}
+
+/* BANDEAU */
+.breadcrumbs-v3{max-height:150px;}
+
+/* REFERENCES */
+.a-reference{
+    color: #888888;
+}
+.a-active{
+	color:white;
+}
+.a-reference:hover{
+	color: #888888;
+	text-decoration: none;
+}
+
+/* FICHE DETAIL */
+.a-tag-detail{
+	color:#919191;
+}
+.h1-detail{
+	margin-top: 50px;
+	margin-bottom: 0px;
+}
+.tags-secteur{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	color: #919191;
+}
+.tags-real{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 50px;
+	color: #919191;
+}
+.txt-detail{
+	font-size: 1.1em;
+}
+
+/* FOOTER */
+.headline{color: #fff;}
+.hr-li-footer{
+	width: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 2px;
+	border: 0;
+	color: white;
+	background-color: white;
+}
+.contacts-section:after{
+	background: rgb(0,0,0);
+}
+
+.color-yellow{
+	color: #F7B101;
+}
+.h2-footer{
+	color: white;
+	font-size: 2.5em;
+	margin-bottom: 50px;
+}
+
+
+
+.border-shadow{
+	-moz-box-shadow: -2px 3px 10px 0px #8E8E8E;
+	-webkit-box-shadow: -2px 3px 10px 0px #8E8E8E;
+	-o-box-shadow: -2px 3px 10px 0px #8E8E8E;
+	box-shadow: -2px 3px 10px 0px #8E8E8E;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#8E8E8E, Direction=236, Strength=10);
+}
+
+.header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a{
+	border-bottom: none;
+	border-top: solid 2px #E0E0E0;
+	color: #F16B37;
+}
+
+.header .dropdown-menu{border-top:solid 2px #E0E0E0;}
+
+@media screen and (max-width: 1003px)
+{
+	.logo-menu{position: absolute;top:10px;margin-left:0px;}
+	.article-qui{margin-top:60px;}
+	.sous-logo{display:block;height:80px;}
+	.header .navbar-toggle{margin-top: 100px;margin-right:-150px;}	
+}
+
+@media screen and (max-width: 805px)
+{
+	.logo-menu{position: absolute;top:10px;left:10px;}
+	.logo{width:150px!important;height:150px!important;}
+	.sous-logo{height:50px;}
+}
